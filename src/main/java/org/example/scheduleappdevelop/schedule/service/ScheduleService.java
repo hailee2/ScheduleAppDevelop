@@ -5,6 +5,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.example.scheduleappdevelop.schedule.dto.*;
 import org.example.scheduleappdevelop.schedule.entity.Schedule;
 import org.example.scheduleappdevelop.schedule.repository.ScheduleRepository;
+import org.example.scheduleappdevelop.user.entity.User;
+import org.example.scheduleappdevelop.user.repository.UserRepository;
+import org.example.scheduleappdevelop.user.service.UserService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
@@ -18,9 +21,14 @@ import java.util.List;
 public class ScheduleService {
 
     private final ScheduleRepository scheduleRepository;
+    private final UserRepository userRepository;
+    private final UserService userService;
 
     @Transactional
-    public ScheduleSaveResponse save(ScheduleSaveRequest request) {
+    public ScheduleSaveResponse save(ScheduleSaveRequest request, Long userId) {
+        User user = userRepository.findById(userId).orElseThrow(
+                () -> new IllegalArgumentException("존재하지 않는 유저입니다.")
+        );
         if (request.getTitle() == null) {
             throw new IllegalArgumentException("제목은 필수값입니다.");
         }
@@ -30,7 +38,8 @@ public class ScheduleService {
 
         Schedule schedule = new Schedule(
                 request.getTitle(),
-                request.getContent()
+                request.getContent(),
+                user
         );
 
         Schedule savedSchedule = scheduleRepository.save(schedule);
@@ -62,7 +71,11 @@ public class ScheduleService {
     }
 
     @Transactional(readOnly = true)
-    public ScheduleGetOneResponse findSchedule(long scheduleId) {
+    public ScheduleGetOneResponse findSchedule(Long userId, Long scheduleId) {
+        userRepository.findById(userId).orElseThrow(
+                () -> new IllegalArgumentException("존재하지 않는 유저입니다.")
+        );
+
         Schedule schedule = scheduleRepository.findById(scheduleId).orElseThrow(
                 () -> new IllegalArgumentException("존재하지 않는 일정입니다.")
         );
@@ -74,11 +87,13 @@ public class ScheduleService {
                 schedule.getCreatedAt(),
                 schedule.getModifiedAt()
         );
-
     }
 
     @Transactional
-    public ScheduleUpdateResponse updateSchedule(long scheduleId, ScheduleUpdateRequest request){
+    public ScheduleUpdateResponse updateSchedule(Long userId ,Long scheduleId, ScheduleUpdateRequest request){
+        userRepository.findById(userId).orElseThrow(
+                () -> new IllegalArgumentException("없는 유저입니다.")
+        );
         Schedule schedule = scheduleRepository.findById(scheduleId).orElseThrow(
                 () -> new IllegalArgumentException("존재하지 않는 일정입니다.")
         );
@@ -99,7 +114,10 @@ public class ScheduleService {
     }
 
     @Transactional
-    public void deleteSchedule(long scheduleId) {
+    public void deleteSchedule(Long userId, Long scheduleId) {
+        userRepository.findById(userId).orElseThrow(
+                () -> new IllegalArgumentException("없는 일정입니다.")
+        );
         boolean b = scheduleRepository.existsById(scheduleId);
         if(!b){
             throw new IllegalArgumentException("존재하지 않는 일정입니다");

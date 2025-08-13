@@ -6,6 +6,7 @@ import org.example.scheduleappdevelop.schedule.service.ScheduleService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.nio.file.Path;
 import java.util.List;
 
 @RestController
@@ -13,37 +14,41 @@ import java.util.List;
 public class ScheduleController {
     private final ScheduleService scheduleService;
 
-    @PostMapping("/schedules")
+    @PostMapping("users/{userId}/schedules")
     public ResponseEntity<ScheduleSaveResponse> saveSchedule(
-            @RequestBody ScheduleSaveRequest request
+            @RequestBody ScheduleSaveRequest request,
+            @PathVariable Long userId
     ){
-        return ResponseEntity.ok(scheduleService.save(request));
+        return ResponseEntity.ok(scheduleService.save(request, userId));
     }
 
-    @GetMapping("/schedules")
+    @GetMapping("/users/{userId}/schedules")
     public ResponseEntity<List<ScheduleGetAllResponse>> getSchedules(){
         return ResponseEntity.ok(scheduleService.findSchedules());
     }
 
-    @GetMapping("/schedules/scheduleId")
+    @GetMapping("/users/{userId}/schedules/scheduleId")
     public ResponseEntity<ScheduleGetOneResponse> getSchedule(
-            @PathVariable long scheduleId
+            @PathVariable Long userId,
+            @PathVariable Long scheduleId
     ){
-        return ResponseEntity.ok(scheduleService.findSchedule(scheduleId));
+        return ResponseEntity.ok(scheduleService.findSchedule(userId, scheduleId));
     }
 
-    @PutMapping("/schedules/scheduleId")
+    @PutMapping("/users/{userId}/schedules/scheduleId")
     public ResponseEntity<ScheduleUpdateResponse> updateSchedule(
             @RequestBody ScheduleUpdateRequest request,
-            @PathVariable long scheduleId
+            @PathVariable Long userId,
+            @PathVariable Long scheduleId
     ){
-        return ResponseEntity.ok(scheduleService.updateSchedule(scheduleId, request));
+        return ResponseEntity.ok(scheduleService.updateSchedule(userId, scheduleId, request));
     }
 
-    @DeleteMapping("/schedules/scheduleId")
+    @DeleteMapping("/users/{userId}/schedules/scheduleId")
     public void deleteSchedule(
-            @PathVariable long scheduleId
+            @PathVariable Long userId,
+            @PathVariable Long scheduleId
     ){
-        scheduleService.deleteSchedule(scheduleId);
+        scheduleService.deleteSchedule(userId, scheduleId);
     }
 }
