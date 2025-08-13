@@ -1,8 +1,8 @@
-package org.example.scheduleappdevelop.common.auth.service;
+package org.example.scheduleappdevelop.auth.service;
 
 import lombok.RequiredArgsConstructor;
-import org.example.scheduleappdevelop.common.auth.dto.AuthRequest;
-import org.example.scheduleappdevelop.common.auth.dto.AuthResponse;
+import org.example.scheduleappdevelop.auth.dto.AuthRequest;
+import org.example.scheduleappdevelop.auth.dto.AuthResponse;
 import org.example.scheduleappdevelop.user.entity.User;
 import org.example.scheduleappdevelop.user.repository.UserRepository;
 import org.springframework.stereotype.Service;

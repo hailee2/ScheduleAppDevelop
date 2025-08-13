@@ -1,4 +1,4 @@
-package org.example.scheduleappdevelop.common.auth.dto;
+package org.example.scheduleappdevelop.auth.dto;
 
 import lombok.Getter;
 

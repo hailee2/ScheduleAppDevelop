@@ -1,11 +1,11 @@
-package org.example.scheduleappdevelop.common.auth.controller;
+package org.example.scheduleappdevelop.auth.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-import org.example.scheduleappdevelop.common.auth.dto.AuthRequest;
-import org.example.scheduleappdevelop.common.auth.dto.AuthResponse;
-import org.example.scheduleappdevelop.common.auth.service.AuthService;
+import org.example.scheduleappdevelop.auth.dto.AuthRequest;
+import org.example.scheduleappdevelop.auth.dto.AuthResponse;
+import org.example.scheduleappdevelop.auth.service.AuthService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
