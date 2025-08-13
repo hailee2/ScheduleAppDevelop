@@ -6,5 +6,4 @@ import lombok.Getter;
 public class ScheduleSaveRequest {
     private String title;
     private String content;
-    private String author;
 }
