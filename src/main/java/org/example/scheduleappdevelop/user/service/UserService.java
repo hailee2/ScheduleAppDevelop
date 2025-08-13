@@ -16,29 +16,6 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    @Transactional //유저 생성하는 서비스
-    public UserSaveResponse save(UserSaveRequest request){
-        if (request.getName() == null) {
-            throw new IllegalArgumentException("이름은 필수값입니다.");
-        }
-        if (request.getEmail() == null) {
-            throw new IllegalArgumentException("Email은 필수값입니다.");
-        }
-
-        User user = new User(
-                request.getName(),
-                request.getEmail()
-        );
-        User savedUser = userRepository.save(user);
-        return new UserSaveResponse(
-                user.getId(),
-                user.getName(),
-                user.getEmail(),
-                user.getCreatedAt(),
-                user.getModifiedAt()
-        );
-    }
-
     @Transactional(readOnly = true) //유저 전체조회하는 서비스
     public List<UserGetAllResponse> findAllUser(){
         List<User> users = userRepository.findAll();

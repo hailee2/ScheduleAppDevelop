@@ -13,13 +13,6 @@ import java.util.List;
 public class UserController {
     private final UserService userService;
 
-    @PostMapping("/users")
-    public ResponseEntity<UserSaveResponse> save(
-            @RequestBody UserSaveRequest request
-    ){
-        return ResponseEntity.ok(userService.save(request));
-    }
-
     @GetMapping("/users")
     public ResponseEntity<List<UserGetAllResponse>> findAllUser(){
         return ResponseEntity.ok(userService.findAllUser());
