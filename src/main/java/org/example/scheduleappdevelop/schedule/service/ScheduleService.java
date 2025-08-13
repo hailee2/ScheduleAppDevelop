@@ -24,9 +24,6 @@ public class ScheduleService {
         if (request.getTitle() == null) {
             throw new IllegalArgumentException("제목은 필수값입니다.");
         }
-        if (request.getPassword() == null) {
-            throw new IllegalArgumentException("비밀번호는 필수값입니다.");
-        }
         if (request.getContent() == null) {
             throw new IllegalArgumentException("내용은 필수값입니다.");
         }
@@ -37,8 +34,7 @@ public class ScheduleService {
         Schedule schedule = new Schedule(
                 request.getTitle(),
                 request.getContent(),
-                request.getAuthor(),
-                request.getPassword()
+                request.getAuthor()
         );
 
         Schedule savedSchedule = scheduleRepository.save(schedule);
@@ -93,9 +89,6 @@ public class ScheduleService {
         Schedule schedule = scheduleRepository.findById(scheduleId).orElseThrow(
                 () -> new IllegalArgumentException("존재하지 않는 일정입니다.")
         );
-        if(!ObjectUtils.nullSafeEquals(schedule.getPassword(), request.getPassword())){
-            throw new IllegalStateException("비밀번호가 일치하지 않습니다.");
-        }
         if(request.getTitle() == null){
             throw new IllegalArgumentException("제목은 필수값입니다.");
         }
@@ -118,9 +111,6 @@ public class ScheduleService {
         Schedule schedule = scheduleRepository.findById(scheduleId).orElseThrow(
                 () -> new IllegalArgumentException("존재하지 않는 일정입니다.")
         );
-        if(!ObjectUtils.nullSafeEquals(schedule.getPassword(), password)){
-            throw new IllegalStateException("비밀번호가 일치하지 않습니다.");
-        }
         scheduleRepository.deleteById(scheduleId);
     }
 }
