@@ -1,4 +1,4 @@
-package org.example.scheduleappdevelop.entity;
+package org.example.scheduleappdevelop.schedule.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -6,11 +6,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.example.scheduleappdevelop.common.entity.BaseEntity;
 
 @Entity
 @Getter
 @NoArgsConstructor
-public class Schedule extends BaseEntity{
+public class Schedule extends BaseEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String title;

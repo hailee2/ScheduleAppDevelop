@@ -1,9 +1,9 @@
-package org.example.scheduleappdevelop.dto;
+package org.example.scheduleappdevelop.schedule.dto;
 
 import lombok.Getter;
 
 @Getter
-public class ScheduleUpdateRequest {
+public class ScheduleSaveRequest {
     private String title;
     private String content;
     private String author;

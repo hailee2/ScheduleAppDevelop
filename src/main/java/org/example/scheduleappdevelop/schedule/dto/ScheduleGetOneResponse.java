@@ -1,12 +1,11 @@
-package org.example.scheduleappdevelop.dto;
+package org.example.scheduleappdevelop.schedule.dto;
 
 import lombok.Getter;
 
 import java.time.LocalDateTime;
-import java.util.function.LongConsumer;
 
 @Getter
-public class ScheduleSaveResponse {
+public class ScheduleGetOneResponse {
     private final Long id;
     private final String title;
     private final String content;
@@ -14,13 +13,13 @@ public class ScheduleSaveResponse {
     private final LocalDateTime createdAt;
     private final LocalDateTime modifiedAt;
 
-    public ScheduleSaveResponse(Long id, String title, String content, String author, LocalDateTime createdAt, LocalDateTime modifiedAt){
-        this.id=id;
+    public ScheduleGetOneResponse(Long id, String title, String content, String author, LocalDateTime createdAt, LocalDateTime modifiedAt){
+        this. id =id;
         this.title=title;
         this.content=content;
-        this.author = author;
+        this.author=author;
         this.createdAt=createdAt;
         this.modifiedAt=modifiedAt;
+
     }
 }
-
