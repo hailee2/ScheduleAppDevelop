@@ -15,12 +15,24 @@ public class AuthService {
 
     @Transactional
     public void signup(AuthRequest request){
+        if(request.getEmail() == null){
+            throw new IllegalArgumentException("email은 필수값입니다.");
+        }
+        if(request.getPassword() == null){
+            throw new IllegalArgumentException("비밀번호는 필수값입니다.");
+        }
         User user = new User(request.getEmail(),request.getPassword());
         userRepository.save(user);
     }
 
     @Transactional(readOnly = true)
     public AuthResponse login(AuthRequest request){
+        if(request.getEmail() == null){
+            throw new IllegalArgumentException("email은 필수값입니다.");
+        }
+        if(request.getPassword() == null){
+            throw new IllegalArgumentException("비밀번호는 필수값입니다.");
+        }
         User user = userRepository.findByEmail(request.getEmail()).orElseThrow(
                 () -> new IllegalArgumentException("존재하지 않는 email입니다.")
         );
