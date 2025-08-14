@@ -40,3 +40,20 @@
 | PathVariable| userId(Long, 필수)|
 | Response   | 200 OK  |
 | Error| 400 Bad Request - 유저 정보 불일치 |
+
+
+### 3. 일정 API
+#### 3.1 일정 생성
+| 항목 | 내용 | 
+|-------|-------|
+| URL  | GET /users/{userId}/schedules  |
+| PathVariable| userId(Long, 필수)|
+| RequestBody| title(String, 필수) <br> content(Stirng, 필수)|
+| Response   | 200 OK  |
+| ResponseBody| id,title,content,createdAt,modifiedAt|
+| Error | 400 Bad Request - 필수값 누락 |
+
+#### 3.2 일정 전체 조회
+#### 3.3 일정 단건 조회
+#### 3.4 일정 수정
+#### 3.5 일정 삭제
