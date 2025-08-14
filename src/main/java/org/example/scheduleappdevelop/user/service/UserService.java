@@ -52,6 +52,12 @@ public class UserService {
         User user = userRepository.findById(userId).orElseThrow(
                 () -> new IllegalArgumentException("존재하지 않는 유저입니다.")
         );
+        if (request.getName() == null) {
+            throw new IllegalArgumentException("이름은 필수값입니다.");
+        }
+        if (request.getEmail() == null) {
+            throw new IllegalArgumentException("email은 필수값입니다.");
+        }
         user.userUpdate(request.getName(),request.getEmail());
         return new UserUpdateResonse(
                 user.getId(),
