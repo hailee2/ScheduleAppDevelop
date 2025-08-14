@@ -1,3 +1,5 @@
+# 일정 관리 앱
+
 ## API 명세
 ### 1. 인증인가 API
 #### 1.1 회원가입
@@ -102,3 +104,7 @@
 | PathVariable| userId(Long, 필수) <br> scheduleId(Long, 필수)|
 | Response   | 200 OK  |
 | Error| 400 Bad Request - 유저 정보 불일치 |
+
+
+## ERD (Entity Relationship Diagram)
+
