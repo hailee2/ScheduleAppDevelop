@@ -107,4 +107,4 @@
 
 
 ## ERD (Entity Relationship Diagram)
-
+<img width="687" height="181" alt="Image" src="https://github.com/user-attachments/assets/83812107-981f-49b8-9177-5ac94fe5e6d6" />
