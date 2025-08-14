@@ -5,6 +5,7 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.example.scheduleappdevelop.auth.dto.AuthRequest;
 import org.example.scheduleappdevelop.auth.dto.AuthResponse;
+import org.example.scheduleappdevelop.auth.dto.AuthSignupRequest;
 import org.example.scheduleappdevelop.auth.service.AuthService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,7 +18,7 @@ public class AuthController {
 
     @PostMapping("/signup")
     public String signup(
-            @RequestBody AuthRequest request
+            @RequestBody AuthSignupRequest request
     ){
         authService.signup(request);
         return "회원가입에 성공했습니다.";
